@@ -20,6 +20,15 @@ const QUICK_PROMPTS = [
   "Do I need coding experience?",
 ];
 
+const POPULAR_QUESTIONS = [
+  "What courses do you offer?",
+  "How much are the courses?",
+  "What days are classes held?",
+  "How do I register?",
+  "Do I need coding experience?",
+  "Can I pay in installments?",
+];
+
 function cleanMessageText(text) {
   return text
     .replace(/\*\*/g, "")
@@ -225,6 +234,26 @@ export default function Chatbot() {
             Get direct answers from the academy knowledge base and share your
             details when you are ready to register.
           </p>
+        </div>
+
+        <div className="mt-7 rounded-lg border border-zinc-200 bg-white p-5 shadow-sm">
+          <h2 className="text-base font-semibold text-zinc-950">
+            Popular questions
+          </h2>
+
+          <div className="mt-4 grid gap-2">
+            {POPULAR_QUESTIONS.map((question) => (
+              <button
+                key={question}
+                type="button"
+                onClick={(event) => sendMessage(event, question)}
+                disabled={isLoading}
+                className="rounded-md border border-zinc-200 bg-zinc-50 px-3 py-2 text-left text-sm font-medium leading-5 text-zinc-700 transition hover:border-emerald-500 hover:bg-emerald-50 hover:text-emerald-800 disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                {question}
+              </button>
+            ))}
+          </div>
         </div>
 
         <form
