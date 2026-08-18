@@ -1,7 +1,6 @@
 (function () {
   var WIDGET_ID = "zubevision-academy-chatbot-widget";
   var SCRIPT_ID = "zubevision-academy-chatbot-script";
-  var DEFAULT_WIDGET_ORIGIN = "http://127.0.0.1:3015";
   var WIDGET_PATH = "/chatwidget?embed=1";
 
   if (document.getElementById(WIDGET_ID)) {
@@ -9,9 +8,11 @@
   }
 
   var currentScript = document.currentScript || document.getElementById(SCRIPT_ID);
+  var scriptOrigin = currentScript ? new URL(currentScript.src).origin : "";
   var widgetOrigin =
     (currentScript && currentScript.getAttribute("data-widget-origin")) ||
-    DEFAULT_WIDGET_ORIGIN;
+    scriptOrigin ||
+    "http://127.0.0.1:3015";
   var position =
     (currentScript && currentScript.getAttribute("data-position")) || "right";
 

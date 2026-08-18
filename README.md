@@ -18,6 +18,18 @@ ZubeVision Tech Academy AI Assistant is a full-stack chatbot system for answerin
 - AI provider: OpenRouter
 - Automation: Make webhook
 
+## Production Services And Keys
+
+This app uses these services in production:
+
+- Vercel hosts the Next.js frontend.
+- Render hosts the FastAPI backend.
+- OpenRouter provides the AI chat model through `OPENROUTER_API_KEY`.
+- Supabase stores course knowledge and student leads through `SUPABASE_URL` and `SUPABASE_KEY`.
+- Make receives lead webhook notifications through `MAKE_WEBHOOK_URL`.
+
+Never commit real API keys to GitHub. Add real keys inside the Vercel and Render dashboards as environment variables.
+
 ## Project Structure
 
 ```text
@@ -51,6 +63,7 @@ SUPABASE_KNOWLEDGE_TABLE=Knowledge_base
 SUPABASE_LEADS_TABLE=leads
 MAKE_WEBHOOK_URL=https://hook.us2.make.com/your_webhook_id
 COURSE_OWNER_EMAIL=owner@example.com
+BACKEND_ALLOWED_ORIGINS=http://127.0.0.1:3015,http://localhost:3015,https://your-frontend.vercel.app
 ```
 
 Do not commit the real `.env` file.
@@ -154,4 +167,3 @@ Check backend syntax:
 cd backend
 .\venv\Scripts\python.exe -m py_compile main.py
 ```
-

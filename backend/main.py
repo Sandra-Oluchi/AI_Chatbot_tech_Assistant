@@ -22,13 +22,19 @@ load_dotenv(ENV_PATH)
 # Create FastAPI app
 app = FastAPI()
 
+ALLOWED_ORIGINS = [
+    origin.strip()
+    for origin in os.getenv(
+        "BACKEND_ALLOWED_ORIGINS",
+        "http://127.0.0.1:3015,http://localhost:3015",
+    ).split(",")
+    if origin.strip()
+]
+
 # Allow frontend access
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://127.0.0.1:3015",
-        "http://localhost:3015",
-    ],
+    allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -133,7 +139,7 @@ def get_runtime_status():
         "supabase_configured": supabase is not None,
         "make_webhook_configured": is_real_env_value(MAKE_WEBHOOK_URL),
         "knowledge_source": "supabase" if supabase else "local_markdown",
-        "frontend_origin": "http://127.0.0.1:3015",
+        "allowed_origins": ALLOWED_ORIGINS,
     }
 
 

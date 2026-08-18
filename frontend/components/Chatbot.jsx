@@ -203,7 +203,7 @@ export default function Chatbot() {
         ...currentChat,
         {
           role: "assistant",
-          text: "I could not connect to the AI service. Please check that the backend is running on port 8015.",
+          text: "I could not connect to the AI service right now. Please try again in a moment.",
         },
       ]);
     } finally {
@@ -335,7 +335,7 @@ export default function Chatbot() {
                   : "bg-red-50 text-red-700 ring-1 ring-red-100"
             }`}
           >
-            Backend: 8015
+            Backend: {backendStatus}
           </span>
         </div>
 

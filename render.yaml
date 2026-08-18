@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: zubevision-academy-backend
+    runtime: python
+    plan: free
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: uvicorn backend.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: OPENROUTER_API_KEY
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_KEY
+        sync: false
+      - key: SUPABASE_KNOWLEDGE_TABLE
+        value: Knowledge_base
+      - key: SUPABASE_LEADS_TABLE
+        value: leads
+      - key: MAKE_WEBHOOK_URL
+        sync: false
+      - key: COURSE_OWNER_EMAIL
+        sync: false
+      - key: BACKEND_ALLOWED_ORIGINS
+        sync: false
