@@ -8,6 +8,13 @@ import os
 import requests
 
 try:
+    import truststore
+
+    truststore.inject_into_ssl()
+except ImportError:
+    pass
+
+try:
     from supabase import Client, create_client
 except ImportError:
     Client = object

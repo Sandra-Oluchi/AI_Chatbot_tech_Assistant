@@ -3,5 +3,6 @@ uvicorn==0.49.0
 pydantic==2.13.4
 python-dotenv==1.2.2
 requests==2.34.2
+truststore==0.10.4
 supabase
 email-validator
